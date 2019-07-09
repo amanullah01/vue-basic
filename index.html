@@ -30,7 +30,18 @@
           </ul>
 
           <div v-for="varient in varients" :key="varient.id">
-            <p>{{ varient.varientColor }}</p>
+            <p @mouseover="updateProduct(varient.varientImage)">
+              {{ varient.varientColor }}
+            </p>
+          </div>
+
+          <div>
+            <button v-on:click="addToCart">Add to cart</button>
+            <!-- <button @click="removeFromCart" :disabled="cart<1">-</button> -->
+            <button v-on:click="removeFromCart" :disabled="cart<1">-</button>
+          </div>
+          <div class="cart">
+            <p>Cart({{ cart }})</p>
           </div>
         </div>
       </div>

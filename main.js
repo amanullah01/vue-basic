@@ -12,12 +12,28 @@ var app = new Vue({
     varients: [
       {
         id: 123,
-        varientColor: "green"
+        varientColor: "green",
+        varientImage: "./assets/shocks_green.jpg"
       },
       {
         id: 124,
-        varientColor: "blue"
+        varientColor: "blue",
+        varientImage: "./assets/shocks_blue.jpg"
       }
-    ]
+    ],
+    cart: 0
+  },
+  methods: {
+    addToCart() {
+      this.cart += 1;
+    },
+    removeFromCart() {
+      if (this.cart > 0) {
+        this.cart -= 1;
+      }
+    },
+    updateProduct: function(varientImage) {
+      this.image = varientImage;
+    }
   }
 });
