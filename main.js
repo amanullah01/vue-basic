@@ -5,6 +5,8 @@ var app = new Vue({
     description: "This is socks",
     image: "./assets/shocks_green.jpg",
     url: "https://google.com/search?q=socks",
-    inStock: false
+    inStock: true,
+    inventory: 100,
+    onSale: true
   }
 });
