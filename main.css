@@ -91,3 +91,7 @@ textarea {
 .onSale {
   color: red;
 }
+
+.outStock {
+  text-decoration: line-through;
+}

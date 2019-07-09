@@ -30,6 +30,8 @@ var app = new Vue({
     removeFromCart() {
       if (this.cart > 0) {
         this.cart -= 1;
+      } else {
+        console.log("negetive");
       }
     },
     updateProduct: function(varientImage) {
