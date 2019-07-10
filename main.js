@@ -2,10 +2,12 @@ var app = new Vue({
   el: "#app",
   data: {
     product: "Socks",
+    brand: "Bata",
     description: "This is socks",
-    image: "./assets/shocks_green.jpg",
+    //image: "./assets/shocks_green.jpg",
+    selectedVarient: 0,
     url: "https://google.com/search?q=socks",
-    inStock: true,
+    //inStock: true,
     inventory: 100,
     onSale: false,
     details: ["80% cotton", "20% polyester", "Gender-neutral"],
@@ -13,12 +15,14 @@ var app = new Vue({
       {
         id: 123,
         varientColor: "green",
-        varientImage: "./assets/shocks_green.jpg"
+        varientImage: "./assets/shocks_green.jpg",
+        varientQuantity: 10
       },
       {
         id: 124,
         varientColor: "blue",
-        varientImage: "./assets/shocks_blue.jpg"
+        varientImage: "./assets/shocks_blue.jpg",
+        varientQuantity: 0
       }
     ],
     cart: 0
@@ -34,8 +38,19 @@ var app = new Vue({
         console.log("negetive");
       }
     },
-    updateProduct: function(varientImage) {
-      this.image = varientImage;
+    updateProduct: function(index) {
+      this.selectedVarient = index;
+    }
+  },
+  computed: {
+    title() {
+      return this.brand + " " + this.product;
+    },
+    image() {
+      return this.varients[this.selectedVarient].varientImage;
+    },
+    inStock() {
+      return this.varients[this.selectedVarient].varientQuantity;
     }
   }
 });
