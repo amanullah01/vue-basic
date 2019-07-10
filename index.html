@@ -12,53 +12,7 @@
     <div class="nav-bar"></div>
 
     <div id="app" v-cloak>
-      <div class="product">
-        <div class="product-image">
-          <img v-bind:src="image" v-bind:alt="description" />
-          <a v-show="inStock" :href="url" target="_blank">Get Voucher code</a>
-        </div>
-        <div class="product-info">
-          <h1>{{ title }}</h1>
-          <span class="onSale" v-if="onSale">On Sale</span>
-          <p v-if="inStock">In Stock ({{ inventory }})</p>
-          <!-- <p v-else-if="inventory > 0 && inventory <=10">
-            All most sold out
-          </p> -->
-          <p v-else :class="{outStock: !inStock}">Out of Stock</p>
-          <ul>
-            <li v-for="detail in details">{{ detail }}</li>
-          </ul>
-
-          <div
-            v-for="(varient,index) in varients"
-            :key="varient.id"
-            class="color-box"
-            :style="{backgroundColor: varient.varientColor}"
-            @mouseover="updateProduct(index)"
-          ></div>
-
-          <div>
-            <button
-              v-on:click="addToCart"
-              :disabled="!inStock"
-              :class="{disabledButton : !inStock}"
-            >
-              Add to cart
-            </button>
-            <!-- <button @click="removeFromCart" :disabled="cart<1">-</button> -->
-            <button
-              v-on:click="removeFromCart"
-              :disabled="cart<1"
-              :class="{disabledButton: cart<1}"
-            >
-              -
-            </button>
-          </div>
-          <div class="cart">
-            <p>Cart({{ cart }})</p>
-          </div>
-        </div>
-      </div>
+      <product :premium="premium"></product>
     </div>
 
     <script src="main.js"></script>
