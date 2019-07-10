@@ -1,3 +1,21 @@
+//product details components
+Vue.component("productdetails", {
+  props: {
+    details: {
+      type: String,
+      required: true
+    }
+  },
+  template: `
+  <ul>
+    <li v-for="detail in details">{{ detail }}</li>
+  </ul>
+  `,
+  data() {
+    return {};
+  }
+});
+
 //Product component
 Vue.component("product", {
   props: {
@@ -20,9 +38,7 @@ Vue.component("product", {
           </p> -->
           <p v-else :class="{outStock: !inStock}">Out of Stock</p>
           <p>Shipping is: {{shipping}}</p>
-          <ul>
-            <li v-for="detail in details">{{ detail }}</li>
-          </ul>
+          <productdetails :details="details"></productdetails>
 
           <div
             v-for="(varient,index) in varients"
