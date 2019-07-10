@@ -18,6 +18,7 @@ Vue.component("productdetails", {
 
 //Product component
 Vue.component("product", {
+  //props: ["premium", "cLen"],
   props: {
     premium: {
       type: Boolean,
@@ -59,15 +60,11 @@ Vue.component("product", {
             <!-- <button @click="removeFromCart" :disabled="cart<1">-</button> -->
             <button
               v-on:click="removeFromCart"
-              :disabled="cart<1"
-              :class="{disabledButton: cart<1}"
             >
               -
             </button>
           </div>
-          <div class="cart">
-            <p>Cart({{ cart }})</p>
-          </div>
+          
         </div>
       </div>`,
   data() {
@@ -84,31 +81,31 @@ Vue.component("product", {
       details: ["80% cotton", "20% polyester", "Gender-neutral"],
       varients: [
         {
-          id: 123,
+          id: 1,
           varientColor: "green",
           varientImage: "./assets/shocks_green.jpg",
           varientQuantity: 10
         },
         {
-          id: 124,
+          id: 2,
           varientColor: "blue",
           varientImage: "./assets/shocks_blue.jpg",
           varientQuantity: 0
         }
-      ],
-      cart: 0
+      ]
     };
   },
   methods: {
     addToCart() {
-      this.cart += 1;
+      this.$emit("add-to-cart", this.varients[this.selectedVarient].id);
     },
     removeFromCart() {
-      if (this.cart > 0) {
-        this.cart -= 1;
-      } else {
-        console.log("negetive");
-      }
+      this.$emit("remove-to-cart", this.varients[this.selectedVarient].id);
+      // if (this.cart > 0) {
+      //   this.cart -= 1;
+      // } else {
+      //   console.log("negetive");
+      // }
     },
     updateProduct: function(index) {
       this.selectedVarient = index;
@@ -133,6 +130,25 @@ Vue.component("product", {
 var app = new Vue({
   el: "#app",
   data: {
-    premium: false
+    premium: true,
+    cart: []
+  },
+  methods: {
+    updateCart(id) {
+      console.log(id);
+      //this.cart += 1;
+      this.cart.push(id);
+    },
+    removeCart(id) {
+      console.log(id);
+      if (this.cart.length > 0) {
+        this.cart.pop();
+      }
+    }
+  },
+  computed: {
+    cartLength() {
+      return this.cart.length;
+    }
   }
 });
