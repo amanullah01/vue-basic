@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Page Title</title>
+    <title>Vue: Introduction</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
@@ -11,7 +11,7 @@
   <body>
     <div class="nav-bar"></div>
 
-    <div id="app">
+    <div id="app" v-cloak>
       <div class="product">
         <div class="product-image">
           <img v-bind:src="image" v-bind:alt="description" />
